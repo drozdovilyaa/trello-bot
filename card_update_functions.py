@@ -15,7 +15,7 @@ def update_description(trello_key, trello_token, card_id, new_card_description):
     )
 
 def update_checklist_on_label(trello_key, trello_token, card_id, label_text, label_checklist):
-    try:
+    if label_text in label_checklist:
         checklist_id = label_checklist.get(label_text)
         header = {
             "Content-Type": "application/json",
@@ -29,5 +29,5 @@ def update_checklist_on_label(trello_key, trello_token, card_id, label_text, lab
             headers=header,
             data=json.dumps(payload),
         )
-    except:
+    else:
         pass
